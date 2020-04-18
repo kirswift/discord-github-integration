@@ -12,11 +12,12 @@ function init() {
     app.listen(config.port, () => {
         console.log(`Server started...`);
     });
-    
+
     app.get('/', (req, res) => {
         // temp
         //if (req.header('X-GitHub-Event') !== 'push') return;
         handlePushEvent(req.body);
+        res.sendStatus(200);
     });
 }
 
