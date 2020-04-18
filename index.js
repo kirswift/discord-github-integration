@@ -13,7 +13,7 @@ function init() {
         console.log(`Server started...`);
     });
 
-    app.get('/', (req, res) => {
+    app.post('/', (req, res) => {
         // temp
         //if (req.header('X-GitHub-Event') !== 'push') return;
         handlePushEvent(req.body);
