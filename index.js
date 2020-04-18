@@ -7,7 +7,7 @@ init();
 
 function init() {
     const app = new express();
-    app.use(parser.urlencoded({ extended: true }));
+    app.use(parser.json());
 
     app.listen(config.port, () => {
         console.log(`Server started...`);
