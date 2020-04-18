@@ -17,6 +17,7 @@ function init() {
         // temp
         //if (req.header('X-GitHub-Event') !== 'push') return;
         handlePushEvent(req.body);
+        console.log(req.body)
         res.sendStatus(200);
     });
 }
