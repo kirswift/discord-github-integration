@@ -14,10 +14,8 @@ function init() {
     });
 
     app.post('/', (req, res) => {
-        // temp
-        //if (req.header('X-GitHub-Event') !== 'push') return;
+        if (req.header('X-GitHub-Event') !== 'push') return;
         handlePushEvent(req.body);
-        console.log(req.body)
         res.sendStatus(200);
     });
 }
