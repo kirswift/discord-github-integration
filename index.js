@@ -41,7 +41,7 @@ async function handlePushEvent(body) {
     let data = {
         embeds: [{
             color: 0x949bff,
-            title: `✅ ${body.commits.length} new commit${body.commits.length > 1 ? 's' : ''} into "${body.ref}"`,
+            title: `✅ ${body.commits.length} new commit${body.commits.length > 1 ? 's' : ''} into "${getCorrectBranchName(body.ref)}"`,
             description: description,
             timestamp: date,
             author: {
@@ -87,4 +87,9 @@ async function getCommitStats(hash) {
             }
         )
     });
+}
+
+function getCorrectBranchName(name) {
+    let arr = name.split('/');
+    return (arr[arr.length - 1]);
 }
