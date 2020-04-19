@@ -28,7 +28,7 @@ async function handlePushEvent(body) {
     for (let i = 0; i < body.commits.length; i++) {
         try {
             let current = body.commits[i];
-            let stats = await getCommitStats(current.id);
+            let stats = await getCommitStats(body.repository.full_name, current.id);
             description += `**${current.message}**\n`
             additions += stats.additions;
             deletions += stats.deletions;
@@ -67,10 +67,10 @@ async function handlePushEvent(body) {
     )
 }
 
-async function getCommitStats(hash) {
+async function getCommitStats(repo, hash) {
     return new Promise((resolve, reject) => {
         request.get(
-            `https://api.github.com/repos/kirswift/test-repo/commits/${hash}`,
+            `https://api.github.com/repos/${repo}/commits/${hash}`,
             {
                 headers: {
                     'User-Agent': 'request',
