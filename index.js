@@ -91,5 +91,5 @@ async function getCommitStats(hash) {
 
 function getCorrectBranchName(name) {
     let arr = name.split('/');
-    return (arr[arr.length - 1]);
+    return arr[arr.length - 1];
 }
