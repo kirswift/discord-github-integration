@@ -25,6 +25,8 @@ async function handlePushEvent(body) {
     let additions = 0, deletions = 0;
     let description = '';
 
+    if (!body.commits.length) return;
+    
     for (let i = 0; i < body.commits.length; i++) {
         try {
             let current = body.commits[i];
