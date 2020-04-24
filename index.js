@@ -14,9 +14,10 @@ function init() {
     });
 
     app.post('/', (req, res) => {
-        if (req.header('X-GitHub-Event') !== 'push') return;
-        handlePushEvent(req.body);
         res.sendStatus(200);
+        if (req.header('X-GitHub-Event') !== 'push') {
+            handlePushEvent(req.body);
+        }
     });
 }
 
@@ -24,9 +25,8 @@ async function handlePushEvent(body) {
     let date = new Date();
     let additions = 0, deletions = 0;
     let description = '';
-
-    if (!body.commits.length) return;
     
+    if (!body.commits.length) return;
     for (let i = 0; i < body.commits.length; i++) {
         try {
             let current = body.commits[i];
